@@ -1,1 +1,1 @@
-PASTE-YOUR-DEPLOYED-PAPER-URL-HERE
+https://github.com/ziadkhalil04-jpg/ML-internship_test/blob/main/work/notebooks/capstone.ipynb
