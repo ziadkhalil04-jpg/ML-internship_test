@@ -5,31 +5,53 @@ This repository contains the end-to-end Machine Learning pipeline designed for *
 
 ## System Architecture
 ```text
+# ML Internship Capstone Project
+
+## Architecture & Data Flow
+
+```text
 [ Raw Impression Data ] ──► [ Exclusion Rules (Baseline >= 10) ] ──► [ Feature Engineering ]
                                                                              │
 [ Automated Refresh Queue ] ◄── [ Random Forest Classification ] ◄──────────┘
-Quick Start Guide (For Reviewers &
-External Developers)
-1. Clone the repository:
-git clone [https://github.com/ziadkhalil04-jpg/ML-internship_test.git](https://github.com/ziadkhalil04-jpg/ML-internship_test.git)
-cd ML-internship_test
+```
 
-2. Install dependencies:
-pip install numpy pandas scikit-learn matplotlib
-Run the Capstone Notebook:
-Open work/notebooks/capstone.ipynb in Jupyter Notebook, VS Code, or Google Colab and run all cells sequentially.
+---
 
-Evaluation Results (v2 Model)
+## Quick Start Guide (For Reviewers & External Developers)
 
-Model: Random Forest Classifier (Optimized)
-Metric: F1-Score ~ 0.82 on validation split
-Top Predictors: baseline_impressions and content_age_days
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/ziadkhalil04-jpg/ML-internship_test.git
+   cd ML-internship_test
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   pip install numpy pandas scikit-learn matplotlib
+   ```
+
+3. **Run the Capstone Notebook:**
+   Open `work/notebooks/capstone.ipynb` in Jupyter Notebook, VS Code, or Google Colab and run all cells sequentially.
+
+---
+
+## Evaluation Results (v2 Model)
+
+* **Model:** Random Forest Classifier (Optimized)
+* **Metric:** F1-Score ~ 0.82 on validation split
+* **Top Predictors:** `baseline_impressions` and `content_age_days`
+
+---
 
 ## Model Limitations
+
 * **Synthetic Proxy Data:** The evaluation uses simulated metrics representing public-safe traffic patterns; live production deployment requires connection to Search Console APIs.
 * **Static Threshold:** Decay is classified on a fixed 35% drop ratio, which may not capture seasonal fluctuation without secondary time-series features.
 
+---
+
 ## AI Transparency Diligence
+
 * **AI Assistance Statement:** This codebase and research paper were built using Gemini / Claude as an AI thinking partner for drafting boilerplate and baseline logic. All domain configurations, feature leakage checks, data contracts, and final code reviews were independently conducted and validated manually by Ziad Khalil.
 
 ---
