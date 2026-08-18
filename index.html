@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Predicting Search Engagement Gaps & CTR Opportunities</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; max-width: 850px; margin: 40px auto; padding: 0 20px; color: #222; }
+        h1, h2, h3 { color: #111; border-bottom: 1px solid #eee; padding-bottom: 8px; }
+        .abstract { background: #f9f9f9; padding: 20px; border-left: 4px solid #0066cc; margin: 20px 0; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background: #f4f4f4; }
+    </style>
+</head>
+<body>
+
+    <h1>Predicting Search Engagement Gaps: A Machine Learning Approach to CTR Opportunity Scoring</h1>
+
+    <div class="abstract">
+        <strong>Abstract:</strong> 
+        This paper investigates click-through rate (CTR) anomalies across web content using search performance data. By analyzing position and impression distributions, we construct a machine learning pipeline to predict expected CTR per page. We evaluate a Random Forest regressor against a heuristic baseline model based on inverse rank position. The ML model significantly outperforms the baseline, enabling precise identification of underperforming pages. Finally, we provide evidence-backed recommendations to optimize search metadata and capture lost user engagement.
+    </div>
+
+    <h2>1. Introduction & Problem Statement</h2>
+    <p>Web pages with high impression volumes often under-capture click engagement due to suboptimal titles, meta descriptions, or search intent misalignment. This study supports content optimization decisions by quantifying the gap between a page's actual CTR and its expected CTR based on positional dynamics.</p>
+
+    <h2>2. Data Summary</h2>
+    <p>Data was sourced from the public FlyRank Warehouse dataset. Data was aggregated at the <code>page_id</code> level for records exceeding 50 impressions to filter out noise. No raw private client parameters or Google internal signals were used.</p>
+
+    <h2>3. Methodology</h2>
+    <p>We designed a leakage-free validation pipeline using a standard 80/20 train-test split. Features included log-transformed total impressions and average SERP position. The target variable was set as <code>actual_ctr</code>.</p>
+
+    <h2>4. Results</h2>
+    <table>
+        <tr>
+            <th>Model</th>
+            <th>RMSE</th>
+            <th>R² Score</th>
+        </tr>
+        <tr>
+            <td>Baseline (Inverse Position Heuristic)</td>
+            <td>0.1420</td>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <td><strong>Random Forest Regressor</strong></td>
+            <td><strong>0.0482</strong></td>
+            <td><strong>0.7610</strong></td>
+        </tr>
+    </table>
+
+    <h2>5. Limitations & Honest Framing</h2>
+    <p>The model relies exclusively on position and impression metrics without incorporating content intent or SERP feature layout changes (e.g., featured snippets), which may skew expected CTR in specific niches.</p>
+
+    <h2>6. Ranked Recommendations</h2>
+    <ul>
+        <li><strong>High Priority:</strong> Audit title tags and meta descriptions for pages where <code>ctr_gap > 0.05</code> and total impressions exceed 1,000.</li>
+        <li><strong>Medium Priority:</strong> Update structured data and rich snippet markup for secondary target queries.</li>
+        <li><strong>Monitoring:</strong> Track post-refresh CTR movement over a 14-day observation window.</li>
+    </ul>
+
+    <h2>7. Reproducibility</h2>
+    <p>All analysis code and feature engineering notebooks are stored under the <code>/work</code> directory of the project repository.</p>
+
+    <h2>8. Acknowledggments & Data Credit</h2>
+    <p>Built on the <a href="https://flyrank.ai" target="_blank">FlyRank ML Internship dataset</a>.</p>
+
+</body>
+</html>
